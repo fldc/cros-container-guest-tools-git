@@ -1,7 +1,7 @@
 _pkgname=cros-container-guest-tools
 pkgname=${_pkgname}-git
-pkgver=r275.19eab9e
-pkgrel=3
+pkgver=r334.d0714026
+pkgrel=1
 pkgdesc="Linux guest tools for the Crostini containers on ChromeOS"
 arch=('any')
 license=('custom')
@@ -78,9 +78,8 @@ package() {
 
 	### cros-host-fonts
 
-	install -m644 -D ${srcdir}/${_pkgname}/cros-host-fonts/05-cros-fonts.conf ${pkgdir}/etc/fonts/conf.avail/05-cros-fonts.conf
-	mkdir -p ${pkgdir}/etc/fonts/conf.d/
-	ln -sf ../conf.avail/05-cros-fonts.conf ${pkgdir}/etc/fonts/conf.d/05-cros-fonts.conf
+	install -m644 -D ${srcdir}/${_pkgname}/cros-host-fonts/usr-share-fonts-chromeos.mount ${pkgdir}/usr/lib/systemd/system/usr-share-fonts-chromeos.mount
+	ln -sf ../usr-share-fonts-chromeos.mount ${pkgdir}/usr/lib/systemd/system/multi-user.target.wants/usr-share-fonts-chromeos.mount
 
 	### cros-notificationd
 
